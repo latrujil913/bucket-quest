@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Bucket_Quest</string>
+    <string name="splash_screen_text">Bucket Quest</string>
+    <string name="my_list">My List</string>
+    <string name="list">List</string>
+    <string name="map">Map</string>
+    <string name="settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_event">Add Event</string>
+    <string name="event_created">Event Created!</string>
+</resources>

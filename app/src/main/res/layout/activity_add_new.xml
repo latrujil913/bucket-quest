@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="10"
+        android:gravity="center_horizontal">
+
+
+    <EditText
+            android:id="@+id/edittext_event_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="Event Name"/>
+
+    <EditText
+            android:id="@+id/edittext_event_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="Event Location"/>
+
+    <EditText
+            android:id="@+id/edittext_event_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="Event description"/>
+    <EditText
+            android:id="@+id/edittext_event_city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="City"/>
+    <EditText
+            android:id="@+id/edittext_event_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="State"/>
+
+    <ImageView
+            android:id="@+id/imageview_preview"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:srcCompat="@color/common_google_signin_btn_text_dark_default" />
+
+    <Button
+            android:id="@+id/button_upload"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Upload Photo"
+            android:textAllCaps="false"
+            android:layout_margin="8dp"/>
+
+    <Button
+            android:id="@+id/button_event_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_event"
+            android:textAllCaps="false"
+            android:layout_margin="8dp"/>
+
+</LinearLayout>

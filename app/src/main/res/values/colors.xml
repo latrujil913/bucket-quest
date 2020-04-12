@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3b5083</color>
+    <color name="colorPrimaryDark">#032856</color>
+    <color name="colorPrimaryLight">#6a7cb3</color>
+    <color name="colorAccent">#836D3B</color>
+    <color name="eventTint">#8d01579b</color>
+    <color name="commentSeparationLine">#cfd8dc</color>
+</resources>
