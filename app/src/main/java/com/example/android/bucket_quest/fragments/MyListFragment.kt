@@ -102,21 +102,6 @@ class MyListFragment : Fragment() {
         database.addListenerForSingleValueEvent(postListener)
     }
 
-    private fun getData(dataSnapshot: DataSnapshot) : MutableList<Event?>{
-        val eventList : MutableList<Event?> = mutableListOf()
-
-        for (states in dataSnapshot.children) {
-            for (cities in states.children) {
-                for (events in cities.children){
-                    val event  = events.getValue<Event>(Event::class.java)!!
-                    eventList.add(event)
-                }
-            }
-        }
-
-        return eventList
-    }
-
     // TODO: decouple this adapter into it's own file
     class MyEventsAdapter (private val context :Context, private val userEventList: ArrayList<Event>) : androidx.recyclerview.widget.RecyclerView.Adapter<MyEventsAdapter.ViewHolder>() {
 
@@ -135,9 +120,6 @@ class MyListFragment : Fragment() {
 
             // TODO: change to arrayList
             val hashMapItem = items[position] as HashMap<String, Any>
-//            val hashMapItem = items[position]
-
-//            val event = createMyEvent(hashMapItem) as ArrayList<Event>
 
             val storage = FirebaseStorage.getInstance()
             val storageRef = storage.reference
@@ -157,11 +139,11 @@ class MyListFragment : Fragment() {
             }
 
             holder.itemView.setOnClickListener {
-                Log.i("onClick", hashMapItem.get("name").toString())
+                Log.i("onClick", hashMapItem["name"].toString())
                 val intent =  Intent(context, EventActivity::class.java)
 
                 // 'intent.putExtra' packages up information within the intent to sent to the new activity
-                intent.putExtra("event_key", hashMapItem)
+                intent.putExtra("event_key", createMyEvent(hashMapItem))
                 /*  TODO: instead of sending just the information I might need to send the FB ref
                     intent.putExtra("event_name_key", item.name)
                  */
