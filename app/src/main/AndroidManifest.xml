@@ -22,7 +22,8 @@
         <!--<activity android:name=".SplashActivity" > TODO: temp comment, used to test fragments -->
         <activity
                 android:name=".activities.EventActivity"
-                android:theme="@style/AppTheme.NoActionBar">
+                android:theme="@style/AppTheme.NoActionBar"
+                android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
                 android:name=".activities.MainActivity"
