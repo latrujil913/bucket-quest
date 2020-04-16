@@ -8,8 +8,7 @@ Bucket quest is an android application that enables anybody to look up a locatio
 <br />
 <br />
 <br />
-<br />
 
 #### Note:
-Sensitive api keys stored in keys.xml
+Sensitive api keys stored in keys.xml <br />
 google-services.json omitted in gitignore
