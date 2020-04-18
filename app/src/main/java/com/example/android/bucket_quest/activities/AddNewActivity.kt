@@ -171,6 +171,8 @@ class AddNewActivity : AppCompatActivity() {
     }
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
         // Result code is RESULT_OK only if the user selects an Image
         if (resultCode == Activity.RESULT_OK)
             when (requestCode) {
