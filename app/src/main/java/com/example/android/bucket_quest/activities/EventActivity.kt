@@ -18,7 +18,6 @@ import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.activity_event.*
-import kotlinx.android.synthetic.main.event_row.*
 import kotlinx.android.synthetic.main.row_comment.view.*
 
 
@@ -58,9 +57,8 @@ class EventActivity: AppCompatActivity() {
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                // Getting Post failed, log a message
+                // Getting Post failed, logging message
                 Log.w("getEventsNearLocation", "loadPost:onCancelled", databaseError.toException())
-                // ...
             }
         }
         database.addListenerForSingleValueEvent(postListener)
@@ -148,10 +146,6 @@ class EventActivity: AppCompatActivity() {
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val item = items[position]
-
-//            val storage = FirebaseStorage.getInstance()
-//            val storageRef = storage.reference
-//            val imageView = findViewById<ImageView>(R.id.imageview_event)
 
             if (item != null) {
                 holder.commentTextView.text = item
