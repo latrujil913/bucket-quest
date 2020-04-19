@@ -138,7 +138,7 @@ class MyListFragment : Fragment() {
                 val intent =  Intent(context, EventActivity::class.java)
 
                 // 'intent.putExtra' packages up information within the intent to sent to the new activity
-                intent.putExtra("event_key", hashMapItem)
+                intent.putExtra("event_key", createMyEvent(hashMapItem))
                 /*  TODO: instead of sending just the information I might need to send the FB ref
                     intent.putExtra("event_name_key", item.name)
                  */

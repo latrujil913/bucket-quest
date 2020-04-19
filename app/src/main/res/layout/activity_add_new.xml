@@ -47,10 +47,10 @@
             android:hint="State"/>
 
     <ImageView
-            android:id="@+id/imageview_preview"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            app:srcCompat="@color/common_google_signin_btn_text_dark_default" />
+        android:id="@+id/imageview_preview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@color/common_google_signin_btn_text_dark_default" />
 
     <Button
             android:id="@+id/button_upload"
