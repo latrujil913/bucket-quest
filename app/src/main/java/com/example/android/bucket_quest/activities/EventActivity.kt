@@ -92,7 +92,7 @@ class EventActivity: AppCompatActivity() {
         commentsRecyclerView.adapter = adapter
         commentsRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
 
-        buttonAddComment.setOnClickListener { viewModel.addComment(event.state!!, event.city!!, event.name!!, editTextComment.text.toString()) }
+        buttonAddComment.setOnClickListener { viewModel.addComment(event.state!!, event.city!!, event.name, editTextComment.text.toString()) }
         buttonUpvote.setOnClickListener { upvote() }
         buttonDownvote.setOnClickListener { downvote() }
 //        buttonSaveEvent.setOnClickListener{ saveEvent() }
