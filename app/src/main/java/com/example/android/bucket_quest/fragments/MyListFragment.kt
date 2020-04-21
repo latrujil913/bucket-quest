@@ -103,11 +103,11 @@ class MyListFragment : Fragment() {
     }
 
     // TODO: decouple this adapter into it's own file
-    class MyEventsAdapter (private val context :Context, private val userEventList: ArrayList<Event>) : androidx.recyclerview.widget.RecyclerView.Adapter<MyEventsAdapter.ViewHolder>() {
+    class MyEventsAdapter (private val context :Context, userEventList: ArrayList<Event>) : androidx.recyclerview.widget.RecyclerView.Adapter<MyEventsAdapter.ViewHolder>() {
 
         private val storage = FirebaseStorage.getInstance()
         private val storageRef = storage.reference
-        private var items : ArrayList<Event> = ArrayList()
+        private var items : ArrayList<Event> = userEventList
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val view = LayoutInflater.from(parent.context)

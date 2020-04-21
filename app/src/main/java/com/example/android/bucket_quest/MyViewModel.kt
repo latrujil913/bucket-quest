@@ -143,13 +143,18 @@ class MyViewModel: ViewModel(){
                     // if the user exists
                     if(currentUser?.uid == user.key){
                         if(dataSnapshot.child(USER).child(user.key as String).child("todoList").value != null){
-                            // TODO: need to find a way to do this dynamically
-//                            val newEvents = dataSnapshot.child(USER).child(user.key as String).child("todoList").value as ArrayList<Event>
                             val newEvents = dataSnapshot.child(USER).child(user.key as String).child("todoList").value as ArrayList<HashMap<String, Event>>
+                            var index = 0
+                            var found = 0
                             for (events in newEvents) {
-                                Log.i("asdf", newEvents[0].toString())
+                                if (event.name == events["name"].toString() && event.city == events.toString()) {
+                                    Log.i("asdf", events["name"].toString())
+                                    found = index
+                                }
+                                index += 1
                             }
-//                            database.child(USER).child(user.key as String).child("todoList").child("1").removeValue()
+                            newEvents.removeAt(found)
+                            database.child(USER).child(user.key as String).child("todoList").setValue(newEvents)
                         }
 
                     }
