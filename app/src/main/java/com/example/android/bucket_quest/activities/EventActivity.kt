@@ -65,8 +65,7 @@ class EventActivity: AppCompatActivity() {
     }
 
     private fun setupUI(){
-
-        event = intent.extras.getSerializable("event_key") as Event
+        event = intent.extras?.getSerializable("event_key") as Event
 
         val storage = FirebaseStorage.getInstance()
         val storageRef = storage.reference
@@ -90,17 +89,14 @@ class EventActivity: AppCompatActivity() {
         commentsRecyclerView.adapter = adapter
         commentsRecyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
 
-        buttonAddComment.setOnClickListener { viewModel.addComment(event.state!!, event.city!!, event.name!!, editTextComment.text.toString()) }
+        buttonAddComment.setOnClickListener { viewModel.addComment(event.state!!, event.city!!, event.name, editTextComment.text.toString()) }
         buttonUpvote.setOnClickListener { upvote() }
         buttonDownvote.setOnClickListener { downvote() }
-//        buttonSaveEvent.setOnClickListener{ saveEvent() }
         bookmark_toggle.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                // The toggle is enabled
                 saveEvent()
             } else {
-                // TODO: The toggle is disabled, add functionality to remove an event from the Mylist
-                 removeEvent()
+                removeEvent()
             }
         }
     }

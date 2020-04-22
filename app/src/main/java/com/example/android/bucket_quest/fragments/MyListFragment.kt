@@ -114,6 +114,8 @@ class MyListFragment : Fragment() {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+            // TODO: change to arrayList
             val hashMapItem = items[position] as HashMap<String, Any>
 
             val storage = FirebaseStorage.getInstance()
