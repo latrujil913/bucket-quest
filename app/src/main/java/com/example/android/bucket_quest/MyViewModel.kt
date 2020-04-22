@@ -148,7 +148,6 @@ class MyViewModel: ViewModel(){
                             var found = 0
                             for (events in newEvents) {
                                 if (event.name == events["name"].toString() && event.city == events.toString()) {
-                                    Log.i("asdf", events["name"].toString())
                                     found = index
                                 }
                                 index += 1

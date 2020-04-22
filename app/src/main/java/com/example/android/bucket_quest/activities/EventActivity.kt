@@ -96,11 +96,9 @@ class EventActivity: AppCompatActivity() {
         buttonDownvote.setOnClickListener { downvote() }
         bookmark_toggle.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                // The toggle is enabled
                 saveEvent()
             } else {
-                // TODO: The toggle is disabled, add functionality to remove an event from the Mylist
-                 removeEvent()
+                removeEvent()
             }
         }
     }
@@ -147,9 +145,7 @@ class EventActivity: AppCompatActivity() {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             val item = items[position]
 
-//            val storage = FirebaseStorage.getInstance()
-//            val storageRef = storage.reference
-//            val imageView = findViewById<ImageView>(R.id.imageview_event)
+
 
             if (item != null) {
                 holder.commentTextView.text = item
