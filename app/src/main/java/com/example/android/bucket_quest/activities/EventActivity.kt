@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide
 import com.example.android.bucket_quest.Event
 import com.example.android.bucket_quest.MyViewModel
 import com.example.android.bucket_quest.R
-import com.example.android.bucket_quest.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
@@ -107,7 +106,6 @@ class EventActivity: AppCompatActivity() {
 
     private fun toggleButtonState() {
         val currentUser = auth.currentUser
-
         // toggle the bookmark button if it exists in the users todolist
         if (currentUser != null) {
             val postListener = object : ValueEventListener {
@@ -116,6 +114,8 @@ class EventActivity: AppCompatActivity() {
                     val userTodo = userSnapshot.value as HashMap<String, Any>
                     containsEvent(userTodo)
                     bookmark_toggle.setOnCheckedChangeListener { _, isChecked ->
+
+//                        bookmark_toggle.isChecked = true
                         if (isChecked) {
                             saveEvent()
                         } else {
@@ -142,8 +142,22 @@ class EventActivity: AppCompatActivity() {
         }
     }
 
-    private fun containsEvent(todo : HashMap<String, Any> ) {
-        Log.i("asdf","Hello")
+    private fun containsEvent(
+        userEvent: HashMap<String, Any>
+    ) {
+        // TODO: check I todo needs to be initialized first
+        if (userEvent["todo"] != null) {
+            val todoList = userEvent["todo"] as ArrayList<HashMap<String, Any>>
+            for (todoItem in todoList) {
+                if (todoItem["name"] == event.name
+                    && todoItem["city"] == event.city
+                    && todoItem["state"] == event.state){
+                    Log.i("asdf","Hello")
+                }
+            }
+
+        }
+
     }
 
     private fun downvote() {
