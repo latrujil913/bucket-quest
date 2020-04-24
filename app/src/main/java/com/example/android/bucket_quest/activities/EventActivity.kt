@@ -104,23 +104,25 @@ class EventActivity: AppCompatActivity() {
 
     }
 
+    // toggle the bookmark button if it exists in the users todolist
     private fun toggleButtonState() {
         val currentUser = auth.currentUser
-        // toggle the bookmark button if it exists in the users todolist
         if (currentUser != null) {
             val postListener = object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val userSnapshot = dataSnapshot.child("users").child(currentUser.uid)
                     val userTodo = userSnapshot.value as HashMap<String, Any>
-                    containsEvent(userTodo)
+                    val contain = containsEvent(userTodo)
                     bookmark_toggle.setOnCheckedChangeListener { _, isChecked ->
-
-//                        bookmark_toggle.isChecked = true
-                        if (isChecked) {
+                        if (isChecked && !contain) {
                             saveEvent()
-                        } else {
+                        }
+                        else if (!isChecked) {
                             removeEvent()
                         }
+                    }
+                    if (contain) {
+                        bookmark_toggle.isChecked = true
                     }
                 }
 
@@ -132,32 +134,27 @@ class EventActivity: AppCompatActivity() {
         }
         else {
             bookmark_toggle.setOnCheckedChangeListener { _, isChecked ->
-//            if (isChecked) {
-//                saveEvent()
-//            } else {
-//                removeEvent()
-//            }
-                Log.i("toggle state", "Sorry you need an account to save events")
+                Log.i("toggle", "Sorry you need an account to save events")
             }
         }
     }
 
-    private fun containsEvent(
-        userEvent: HashMap<String, Any>
-    ) {
+    private fun containsEvent (userEvent: HashMap<String, Any>) : Boolean {
         // TODO: check I todo needs to be initialized first
-        if (userEvent["todo"] != null) {
-            val todoList = userEvent["todo"] as ArrayList<HashMap<String, Any>>
+        if (userEvent.containsKey("todoList")) {
+            val todoList = userEvent["todoList"] as ArrayList<HashMap<String, Any>>
             for (todoItem in todoList) {
-                if (todoItem["name"] == event.name
-                    && todoItem["city"] == event.city
-                    && todoItem["state"] == event.state){
+                if (todoItem["name"]?.equals(event.name)!!
+                    && todoItem["city"]?.equals(event.city)!!
+                    && todoItem["state"]?.equals(event.state)!!){
                     Log.i("asdf","Hello")
+                    return true
                 }
             }
 
         }
 
+        return false
     }
 
     private fun downvote() {
