@@ -15,6 +15,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.example.android.bucket_quest.Event
 import com.example.android.bucket_quest.MyViewModel
 import com.example.android.bucket_quest.R
 import com.example.android.bucket_quest.activities.AddNewActivity
@@ -104,16 +105,25 @@ class MapFragment : Fragment(), OnMapReadyCallback{
 
                     for (events in post.children){
                         val latLng = LatLng(events.child("lat").value.toString().toDouble(), events.child("long").value.toString().toDouble())
-                        googleMap.addMarker(MarkerOptions().position(latLng).title(events.key + " " + events.child("description").key)).setIcon(
+                        googleMap.addMarker(MarkerOptions().position(latLng).title(events.key /*+ " " + events.child("description").key*/)).setIcon(
                             BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
                         )
                         googleMap.setOnInfoWindowClickListener {
                             val intent =  Intent(context, EventActivity::class.java)
-                            intent.putExtra("event_name_key", events.key)
-                            intent.putExtra("event_location_key", "test")
-                            intent.putExtra("event_upvotes_key", events.child("upvotes").key)
-                            intent.putExtra("event_downvotes_key", events.child("downvotes").key)
-                            intent.putExtra("event_picture_key", events.child("picture").key)
+                            val list = ArrayList<String>()
+                            val num =   events.child("upvotes").value
+
+
+
+                            val event = Event(events.key.toString(),
+                                                events.child("location").key,
+                                                events.child("picture").toString(),
+                                                events.child("upvotes").key!!.toLong(),
+                                                events.child("downvotes").key!!.toLong(),
+                                    "desc",
+                                                list)
+
+                            intent.putExtra("event_key", event)
 
                             startActivity(intent)
                         }
