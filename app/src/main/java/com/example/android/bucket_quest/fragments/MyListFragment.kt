@@ -159,8 +159,8 @@ class MyListFragment : Fragment() {
                          hashMap["picture"] as String, hashMap["upvotes"] as Long,
                          hashMap["downvotes"] as Long, hashMap["description"] as String,
                          hashMap["comments"] as ArrayList<String>?, hashMap["city"] as String,
-                         hashMap["state"] as String, hashMap["lat"] as Long,
-                         hashMap["long"] as Long)
+                         hashMap["state"] as String, hashMap["lat"] as Double,
+                         hashMap["long"] as Double)
         }
 
         override fun getItemCount(): Int = items.size

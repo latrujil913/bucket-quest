@@ -108,8 +108,8 @@ class AddNewActivity : AppCompatActivity() {
             list,
             edittext_event_city.text.toString(),
             edittext_event_state.text.toString(),
-            0,
-            0
+            0.0,
+            0.0
         )
 
         // TODO: figure out how to add stuff when "rules" are both "false"

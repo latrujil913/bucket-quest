@@ -13,8 +13,8 @@ class Event (
     val comments: ArrayList<String>? = ArrayList(),
     var city :  String? = null,
     var state : String? = null,
-    var lat : Long = 0,
-    var long : Long = 0
+    var lat : Double = 0.0,
+    var long : Double = 0.0
 ): Serializable {
     fun addUpvote(){
         this.upvotes += 1

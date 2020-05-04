@@ -111,17 +111,23 @@ class MapFragment : Fragment(), OnMapReadyCallback{
                         googleMap.setOnInfoWindowClickListener {
                             val intent =  Intent(context, EventActivity::class.java)
                             val list = ArrayList<String>()
-                            val num =   events.child("upvotes").value
+                            val num =   events.child("upvotes").value as Long
 
 
 
                             val event = Event(events.key.toString(),
-                                                events.child("location").key,
-                                                events.child("picture").toString(),
-                                                events.child("upvotes").key!!.toLong(),
-                                                events.child("downvotes").key!!.toLong(),
+                                                events.child("location").value as String,
+                                                events.child("picture").value as String,
+                                                events.child("upvotes").value as Long,
+                                                events.child("downvotes").value as Long,
                                     "desc",
-                                                list)
+                                                list,
+                                events.child("city").value as String,
+                                events.child("state").value as String,
+                                events.child("lat").value as Double,
+                                events.child("long").value as Double
+
+                                )
 
                             intent.putExtra("event_key", event)
 
