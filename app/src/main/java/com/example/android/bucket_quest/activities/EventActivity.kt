@@ -14,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.example.android.bucket_quest.Event
 import com.example.android.bucket_quest.MyViewModel
 import com.example.android.bucket_quest.R
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.extensions.LayoutContainer
@@ -27,12 +28,16 @@ class EventActivity: AppCompatActivity() {
     lateinit var viewModel: MyViewModel
     private lateinit var adapter: MyCommentsAdapter
     private lateinit var database: DatabaseReference
+    private lateinit var auth: FirebaseAuth
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event)
         viewModel = ViewModelProviders.of(this)[MyViewModel::class.java]
         database = FirebaseDatabase.getInstance().reference
+        auth = FirebaseAuth.getInstance()
+
 
         setupUI()
         getComments()
@@ -65,12 +70,13 @@ class EventActivity: AppCompatActivity() {
     }
 
     private fun setupUI(){
-        event = intent.extras?.getSerializable("event_key") as Event
-
         val storage = FirebaseStorage.getInstance()
         val storageRef = storage.reference
         val imageView = findViewById<ImageView>(R.id.imageview_event)
 
+        database = FirebaseDatabase.getInstance().reference
+
+        event = intent.extras?.getSerializable("event_key") as Event
         storageRef.child("event-pictures/${event.picture}").downloadUrl.addOnSuccessListener {
             // Got the download URL for 'event-pictures/farmers.jpg"'
             Glide.with(this).load(it).into(imageView)
@@ -79,6 +85,8 @@ class EventActivity: AppCompatActivity() {
             // Handle any errors
             Log.i("evt_img","Failed to retrieve image.")
         }
+
+
 
         textview_event_name.text = event.name
         textview_location.text = event.location
@@ -92,13 +100,61 @@ class EventActivity: AppCompatActivity() {
         buttonAddComment.setOnClickListener { viewModel.addComment(event.state!!, event.city!!, event.name, editTextComment.text.toString()) }
         buttonUpvote.setOnClickListener { upvote() }
         buttonDownvote.setOnClickListener { downvote() }
-        bookmark_toggle.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                saveEvent()
-            } else {
-                removeEvent()
+        toggleButtonState()
+
+    }
+
+    // toggle the bookmark button if it exists in the users todolist
+    private fun toggleButtonState() {
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            val postListener = object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val userSnapshot = dataSnapshot.child("users").child(currentUser.uid)
+                    val userTodo = userSnapshot.value as HashMap<String, Any>
+                    val contain = containsEvent(userTodo)
+                    bookmark_toggle.setOnCheckedChangeListener { _, isChecked ->
+                        if (isChecked && !contain) {
+                            saveEvent()
+                        }
+                        else if (!isChecked) {
+                            removeEvent()
+                        }
+                    }
+                    if (contain) {
+                        bookmark_toggle.isChecked = true
+                    }
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Log.i("user_err","Could not get data for the user")
+                }
+            }
+            database.addListenerForSingleValueEvent(postListener)
+        }
+        else {
+            bookmark_toggle.setOnCheckedChangeListener { _, isChecked ->
+                Log.i("toggle", "Sorry you need an account to save events")
             }
         }
+    }
+
+    private fun containsEvent (userEvent: HashMap<String, Any>) : Boolean {
+        // TODO: check I todo needs to be initialized first
+        if (userEvent.containsKey("todoList")) {
+            val todoList = userEvent["todoList"] as ArrayList<HashMap<String, Any>>
+            for (todoItem in todoList) {
+                if (todoItem["name"]?.equals(event.name)!!
+                    && todoItem["city"]?.equals(event.city)!!
+                    && todoItem["state"]?.equals(event.state)!!){
+                    Log.i("asdf","Hello")
+                    return true
+                }
+            }
+
+        }
+
+        return false
     }
 
     private fun downvote() {

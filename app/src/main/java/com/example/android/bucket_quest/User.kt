@@ -1,10 +1,17 @@
 package com.example.android.bucket_quest
 
+import android.util.Log
+
 
 class User(
     val name: String?,
     val userId: String,
-    // TODO: instead make this a reference to the "events" db!
     val todoList: MutableList<Event?>,
     val googlePicture: String
-)
+) {
+    fun containsEvent(todoList: HashMap<String, Any>): Boolean {
+        Log.i("asdf","Hello")
+
+        return false
+    }
+}
