@@ -53,8 +53,6 @@ class MapFragment : Fragment(), OnMapReadyCallback{
         viewModel = ViewModelProviders.of(requireActivity())[MyViewModel::class.java]
         database = FirebaseDatabase.getInstance().reference
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context!!)
-        Log.i("env_var", API_KEY)
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -63,7 +61,6 @@ class MapFragment : Fragment(), OnMapReadyCallback{
         val v =  inflater.inflate(R.layout.fragment_map, container, false)
 
         if (!Places.isInitialized()) {
-            Log.i("env_var", API_KEY)
             Places.initialize(context!!, API_KEY)
         }
 
@@ -88,7 +85,6 @@ class MapFragment : Fragment(), OnMapReadyCallback{
     }
 
     private fun getEventsNearLocation() {
-
         Thread.sleep(1000)
         //val curScreen = googleMap.getProjection().getVisibleRegion().latLngBounds
 
@@ -98,7 +94,6 @@ class MapFragment : Fragment(), OnMapReadyCallback{
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 // Get Post object and use the values to update the UI
-                // TODO: addresses[0].locality not getting city name for me in SLO, find a way to get it
                 if (addresses[0].locality != null){
                     val post = dataSnapshot.child("events").child(addresses[0].adminArea).child(
                         addresses[0].locality)
@@ -111,9 +106,6 @@ class MapFragment : Fragment(), OnMapReadyCallback{
                         googleMap.setOnInfoWindowClickListener {
                             val intent =  Intent(context, EventActivity::class.java)
                             val list = ArrayList<String>()
-                            val num =   events.child("upvotes").value as Long
-
-
 
                             val event = Event(events.key.toString(),
                                                 events.child("location").value as String,
@@ -122,15 +114,13 @@ class MapFragment : Fragment(), OnMapReadyCallback{
                                                 events.child("downvotes").value as Long,
                                     "desc",
                                                 list,
-                                events.child("city").value as String,
-                                events.child("state").value as String,
-                                events.child("lat").value as Double,
-                                events.child("long").value as Double
-
+                                                events.child("city").value as String,
+                                                events.child("state").value as String,
+                                                events.child("lat").value as Double,
+                                                events.child("long").value as Double
                                 )
 
                             intent.putExtra("event_key", event)
-
                             startActivity(intent)
                         }
                     }
@@ -144,7 +134,6 @@ class MapFragment : Fragment(), OnMapReadyCallback{
             override fun onCancelled(databaseError: DatabaseError) {
                 // Getting Post failed, log a message
                 Log.w("getEventsNearLocation", "loadPost:onCancelled", databaseError.toException())
-                // ...
             }
         }
 
@@ -243,7 +232,6 @@ class MapFragment : Fragment(), OnMapReadyCallback{
             }
 
             override fun onError(status: Status) {
-                // TODO: Handle the error.
                 Log.i("PLACES", "An error occurred: $status")
             }
         })
