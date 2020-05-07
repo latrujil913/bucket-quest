@@ -98,32 +98,44 @@ class MapFragment : Fragment(), OnMapReadyCallback{
                     val post = dataSnapshot.child("events").child(addresses[0].adminArea).child(
                         addresses[0].locality)
 
+                    val p = post.children
                     for (events in post.children){
                         val latLng = LatLng(events.child("lat").value.toString().toDouble(), events.child("long").value.toString().toDouble())
                         googleMap.addMarker(MarkerOptions().position(latLng).title(events.key /*+ " " + events.child("description").key*/)).setIcon(
                             BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
                         )
-                        googleMap.setOnInfoWindowClickListener {
+                    }
+
+                    googleMap.setOnInfoWindowClickListener {
+                        if (post.child(it.title).exists()) {
                             val intent =  Intent(context, EventActivity::class.java)
                             val list = ArrayList<String>()
+                            // find the event
+                            val events = post.child(it.title)
+
 
                             val event = Event(events.key.toString(),
-                                                events.child("location").value as String,
-                                                events.child("picture").value as String,
-                                                events.child("upvotes").value as Long,
-                                                events.child("downvotes").value as Long,
-                                    "desc",
-                                                list,
-                                                events.child("city").value as String,
-                                                events.child("state").value as String,
-                                                events.child("lat").value as Double,
-                                                events.child("long").value as Double
-                                )
+                                events.child("location").value as String,
+                                events.child("picture").value as String,
+                                events.child("upvotes").value as Long,
+                                events.child("downvotes").value as Long,
+                                "desc",
+                                list,
+                                events.child("city").value as String,
+                                events.child("state").value as String,
+                                events.child("lat").value as Double,
+                                events.child("long").value as Double
+                            )
 
                             intent.putExtra("event_key", event)
                             startActivity(intent)
                         }
+                        else {
+                            Log.d("EventsCheck", "Event does not exist.")
+                        }
                     }
+
+
                     Log.d("EventsCheck", post.toString())
                 }
                 else{
