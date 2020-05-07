@@ -9,5 +9,5 @@ Bucket quest is an android application that enables anybody to look up a locatio
 </p>
 <br />  
 <p float="left">
-  <img src="https://raw.githubusercontent.com/latrujil913/bucket-quest/master/photos/save.gif" width="30%" height="30%">
+  <img src="https://raw.githubusercontent.com/latrujil913/bucket-quest/master/photos/save_event.gif" width="30%" height="30%">
 </p>
