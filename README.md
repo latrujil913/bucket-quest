@@ -3,7 +3,6 @@
 <br />
 
 ## Features
-=============
 
 * Event addition
 * Commenting
