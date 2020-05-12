@@ -1,4 +1,4 @@
-<p float="center">
+<p align="center">
   <img src="https://raw.githubusercontent.com/latrujil913/bucket-quest/master/photos/logo.png" width="30%" height="30%">
 </p>
 
