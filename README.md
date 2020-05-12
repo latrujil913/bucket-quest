@@ -1,5 +1,5 @@
 <p float="center">
-  <img src="https://raw.githubusercontent.com/latrujil913/bucket-quest/master/photos/logo.png" width="50%" height="50%">
+  <img src="https://raw.githubusercontent.com/latrujil913/bucket-quest/master/photos/logo.png" width="30%" height="30%">
 </p>
 
 # Bucket Quest
