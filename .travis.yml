@@ -6,15 +6,24 @@ android:
     - tools # to get the new `repository-11.xml`
     - tools # see https://github.com/travis-ci/travis-ci/issues/6040#issuecomment-219367943)
     - platform-tools
-    - build-tools-27.0.3
-    - android-27
+    - build-tools-28.0.3
+    - android-28
+    - android-$ANDROID_EMULATOR_LEVEL
+    - sys-img-armeabi-v7a-google_apis-$ANDROID_EMULATOR_LEVEL
 
 before_install:
-  - yes | sdkmanager "platforms;android-27"
+  - yes | sdkmanager "platforms;android-28"
   - chmod +x gradlew
+  # Create and start emulator.
+  - echo no | android create avd --force -n test -t "android-"$ANDROID_EMULATOR_LEVEL --abi $ANDROID_ABI --tag $ANDROID_TAG
+  - emulator -avd test -no-window &
+  - android-wait-for-emulator
+  - adb shell input keyevent 82 &
 
 licenses:
   - '.+'
 
 script:
   - ./gradlew build connectedCheck
+
+sudo: false
