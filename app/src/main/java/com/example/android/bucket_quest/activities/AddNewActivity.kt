@@ -91,13 +91,15 @@ class AddNewActivity : AppCompatActivity() {
     }
 
     private fun getEventInfo() {
-        // get editText values
-
         val list = ArrayList<String>()
         database = FirebaseDatabase.getInstance().reference
+
+        // get editText values
         val newEventName = edittext_event_name.text.toString()
         val newEventCity = edittext_event_city.text.toString()
         val newEventState = edittext_event_state.text.toString()
+
+        // define the new event to be stored in Firebase
         val event = Event(
             edittext_event_name.text.toString(),
             edittext_event_location.text.toString(),
@@ -112,7 +114,6 @@ class AddNewActivity : AppCompatActivity() {
             0.0
         )
 
-        // TODO: figure out how to add stuff when "rules" are both "false"
         database
             .child("events")
             .child(newEventState)

@@ -49,16 +49,16 @@
     <ImageView
         android:id="@+id/imageview_preview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="161dp"
         app:srcCompat="@color/common_google_signin_btn_text_dark_default" />
 
     <Button
-            android:id="@+id/button_upload"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Upload Photo"
-            android:textAllCaps="false"
-            android:layout_margin="8dp"/>
+        android:id="@+id/button_upload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Select Photo"
+        android:textAllCaps="false" />
 
     <Button
             android:id="@+id/button_event_add"
