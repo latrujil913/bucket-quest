@@ -25,7 +25,7 @@ import kotlinx.android.synthetic.main.row_comment.view.*
 class EventActivity: AppCompatActivity() {
 
     private lateinit var event: Event
-    lateinit var viewModel: MyViewModel
+    private lateinit var viewModel: MyViewModel
     private lateinit var adapter: MyCommentsAdapter
     private lateinit var database: DatabaseReference
     private lateinit var auth: FirebaseAuth
@@ -83,7 +83,7 @@ class EventActivity: AppCompatActivity() {
 
         }.addOnFailureListener {
             // Handle any errors
-            Log.i("evt_img","Failed to retrieve image.")
+            Log.e("evt_img","Failed to retrieve image.")
         }
 
 
@@ -133,14 +133,13 @@ class EventActivity: AppCompatActivity() {
             database.addListenerForSingleValueEvent(postListener)
         }
         else {
-            bookmark_toggle.setOnCheckedChangeListener { _, isChecked ->
+            bookmark_toggle.setOnCheckedChangeListener { _, _ ->
                 Log.i("toggle", "Sorry you need an account to save events")
             }
         }
     }
 
     private fun containsEvent (userEvent: HashMap<String, Any>) : Boolean {
-        // TODO: check I todo needs to be initialized first
         if (userEvent.containsKey("todoList")) {
             val todoList = userEvent["todoList"] as ArrayList<HashMap<String, Any>>
             for (todoItem in todoList) {
@@ -176,8 +175,6 @@ class EventActivity: AppCompatActivity() {
     private fun saveEvent() {
         viewModel.saveEvent(event)
         Toast.makeText(this, "Event Saved!", Toast.LENGTH_LONG).show()
-
-//        finish()
     }
 
     private fun removeEvent(){

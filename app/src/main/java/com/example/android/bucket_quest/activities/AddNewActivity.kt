@@ -60,7 +60,6 @@ class AddNewActivity : AppCompatActivity() {
         button_event_add.setOnClickListener {
             getEventInfo()
             uploadImage()
-            // TODO: exit activity, calling finish() crashes app
             finish()
         }
 

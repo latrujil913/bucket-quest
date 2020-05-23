@@ -95,7 +95,7 @@ class MyListFragment : Fragment() {
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
-                    Toast.makeText(context, "Failed to load data.", Toast.LENGTH_LONG).show()
+                    Log.i("db", "ListView: Failed to load data from firebase.")
                 }
             }
 
