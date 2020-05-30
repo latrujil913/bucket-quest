@@ -23,6 +23,15 @@
   <img src="https://raw.githubusercontent.com/latrujil913/bucket-quest/master/photos/map.png" width="30%" height="30%">
 </p>
 <br />  
+<!---
 <p float="left">
   <img src="https://raw.githubusercontent.com/latrujil913/bucket-quest/master/photos/save_event.gif" width="30%" height="30%">
-</p>
+</p> 
+<br /> --->  
+
+## Installation 
+
+* Create a "keys.xml" file in the values folder. The file will contain a string value containing your google maps api. Name the varialble "maps_api"
+* Generate a Firebase google-services.json
+* Insert your google-services.json at the app level folder
+* Build your project and run
