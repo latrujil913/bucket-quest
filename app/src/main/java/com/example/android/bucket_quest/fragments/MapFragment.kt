@@ -86,7 +86,6 @@ class MapFragment : Fragment(), OnMapReadyCallback{
 
     private fun getEventsNearLocation() {
         Thread.sleep(1000)
-        //val curScreen = googleMap.getProjection().getVisibleRegion().latLngBounds
 
         val geocoder = Geocoder(context, Locale.getDefault())
         val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 1)
@@ -98,10 +97,9 @@ class MapFragment : Fragment(), OnMapReadyCallback{
                     val post = dataSnapshot.child("events").child(addresses[0].adminArea).child(
                         addresses[0].locality)
 
-                    val p = post.children
                     for (events in post.children){
                         val latLng = LatLng(events.child("lat").value.toString().toDouble(), events.child("long").value.toString().toDouble())
-                        googleMap.addMarker(MarkerOptions().position(latLng).title(events.key /*+ " " + events.child("description").key*/)).setIcon(
+                        googleMap.addMarker(MarkerOptions().position(latLng).title(events.key)).setIcon(
                             BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
                         )
                     }

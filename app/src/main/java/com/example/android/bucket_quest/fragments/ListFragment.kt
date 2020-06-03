@@ -200,7 +200,7 @@ class ListFragment : Fragment() {
                 for (cities in states.children) {
                     if (cities.key == addresses[0].locality){
                         for (events in cities.children){
-                            event  = events.getValue<Event>(Event::class.java)!!
+                            event  = events.getValue(Event::class.java)!!
                             eventList.add(event)
                         }
                     }
@@ -211,7 +211,7 @@ class ListFragment : Fragment() {
             for (states in dataSnapshot.children) {
                 for (cities in states.children) {
                     for (events in cities.children){
-                        event  = events.getValue<Event>(Event::class.java)!!
+                        event  = events.getValue(Event::class.java)!!
                         eventList.add(event)
                     }
                 }
@@ -263,9 +263,6 @@ class ListFragment : Fragment() {
                     intent.putExtra("event_key", item)
                 }
 
-                /*  TODO: instead of sending just the information I might need to send the FB ref
-                    intent.putExtra("event_name_key", item.name)
-                 */
                 context.startActivity(intent)
             }
         }
@@ -284,26 +281,6 @@ class ListFragment : Fragment() {
             val upvotesTextView: TextView = containerView.upvotesTextView
             val downvotesTextView: TextView = containerView.downvotesTextView
             val eventImageView : ImageView = containerView.card_view_image
-        }
-    }
-
-    companion object {
-        private fun createTestData() :  MutableList<Event> {
-            val list = ArrayList<String>()
-
-            return mutableListOf(
-                // Note: don't have to fill in all of the fields to set an event element
-                Event("Cal Poly vs UCSB", "San Luis Obispo", "bnv", 1, 10, "desc...", list),
-                Event("Career Fair", "San Luis Obispo", "bv", 1, 1000, "desc...", list),
-                Event("Bishops", "location", "bnv", 1, 1, "desc...",list),
-                Event("5K run", "location", "bnv", 1, 1, "desc...", list),
-                Event("Food Drive", "location", "bnv", 1, 1, "desc...", list),
-                Event("Event name", "location", "bnv", 1, 1, "desc...", list),
-                Event("Event name", "location", "bnv", 1, 1, "desc...",list),
-                Event("Event name", "location", "bnv", 1, 1, "desc...",list),
-                Event("Event name", "location", "bnv", 1, 1, "desc...",list),
-                Event("Event name", "location", "bnv", 1, 1, "desc...",list),
-                Event("Event name", "location", "bnv", 1, 1, "desc...", list))
         }
     }
 }
