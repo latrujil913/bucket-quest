@@ -15,6 +15,9 @@ android {
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
+
+        // added just for travis
+        buildToolsVersion "28.0.3"
     }
     buildTypes {
 
@@ -22,6 +25,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    // If the abortOnError is true the  travis build will fail if there is a lint error in the project.
+    lintOptions {
+        abortOnError false
     }
 }
 
