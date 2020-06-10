@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/latrujil913/bucket-quest/master/photos/logo.png" width="30%" height="30%">
 </p>
 
-# Bucket Quest
+# Bucket Quest &middot; ![build](https://github.com/latrujil913/bucket-quest/workflows/build/badge.svg)
 <p>Bucket quest is an android application that enables anybody to look up a location and see a list of interesting/fun activities to do that are worthy of putting on a bucket list.</p>
 <br />
 
