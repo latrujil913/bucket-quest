@@ -47,7 +47,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-maps:16.0.0'
 
     // support for recyclerView
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
     // support for cardView
     implementation 'androidx.cardview:cardview:1.0.0'
