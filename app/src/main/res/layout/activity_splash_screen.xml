@@ -1,23 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#ED112F58"
         android:orientation="vertical">
 
-    <ImageView
-            android:id="@+id/splashImage"
-            android:layout_width="match_parent"
-            android:layout_height="368dp"
-            android:background="@drawable/splash_screen_image" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
+        <ImageView
+            android:id="@+id/splashImage"
+            android:layout_width="345dp"
+            android:layout_height="363dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/splash_screen_image"
+            app:layout_constraintBottom_toTopOf="@+id/textView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/splash_screen_text"
             android:textAllCaps="false"
             android:textColor="#EDF5EDED"
-            android:textSize="45dp" />
+            android:textSize="45dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/splashImage" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
