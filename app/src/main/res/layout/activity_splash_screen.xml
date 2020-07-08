@@ -14,7 +14,7 @@
         <ImageView
             android:id="@+id/splashImage"
             android:layout_width="345dp"
-            android:layout_height="363dp"
+            android:layout_height="345dp"
             android:layout_marginTop="32dp"
             android:background="@drawable/splash_screen_image"
             app:layout_constraintBottom_toTopOf="@+id/textView"
