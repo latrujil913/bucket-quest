@@ -23,11 +23,11 @@
   <img src="https://raw.githubusercontent.com/latrujil913/bucket-quest/master/photos/map.png" width="30%" height="30%">
 </p>
 <br />  
-<!---
+
 <p float="left">
   <img src="https://raw.githubusercontent.com/latrujil913/bucket-quest/master/photos/save_event.gif" width="30%" height="30%">
 </p> 
-<br /> --->  
+<br />
 
 ## Installation 
 
